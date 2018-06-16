@@ -11,6 +11,8 @@
         - rhel-7-server-optional-rpms
     - name: Check yum repolist
       command: "yum repolist enabled"
+      args:
+        warn: no
       register: result
     - name: Print result
       debug:

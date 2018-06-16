@@ -4,7 +4,7 @@
     - name: Disable all repositories
       command: "/usr/bin/subscription-manager repos --disabled=*"
     - name: Enable specified repositories
-      commnad: "/usr/bin/subscription-manager repos --enabled={{ item }}"
+      command: "/usr/bin/subscription-manager repos --enabled={{ item }}"
       with_items:
         - rhel-7-server-rpms
         - rhel-7-server-extras-rpms

@@ -1,0 +1,14 @@
+---
+- hosts: all
+  tasks:
+    - name: Register as user with password and auto-subscribe to a specific pool by ID
+      redhat_subscription:
+      state: present
+      username: joe_user
+      password: somepass
+      pool_ids: xxxx
+      register: result
+    - name: Print message
+      debug: result
+
+

@@ -1,0 +1,17 @@
+---
+- hosts: all
+  tasks:
+    - name: Disable all repositories
+      command: "/usr/bin/subscription-manager repos --disabled=*"
+    - name: Enable specified repositories
+      commnad: "/usr/bin/subscription-manager repos --enabled={{ item }}"
+      with_items:
+        - rhel-7-server-rpms
+        - rhel-7-server-extras-rpms
+        - rhel-7-server-optional-rpms
+    - name: Check yum repolist
+      command: "yum repolist enabled"
+      register: result
+    - name: Print result
+      debug:
+        msg: "{{ result }}"

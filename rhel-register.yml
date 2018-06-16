@@ -9,6 +9,7 @@
       pool_ids: xxxx
       register: result
     - name: Print message
-      debug: result
+      debug:
+        msg: "{{ result }}"
 
 

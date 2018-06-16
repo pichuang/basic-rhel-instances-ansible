@@ -1,12 +1,16 @@
 ---
 - hosts: all
+  vars:
+    username: 'null'
+    password: 'null'
+    pool_ids: 'null'
   tasks:
     - name: Register as user with password and auto-subscribe to a specific pool by ID
       redhat_subscription:
       state: present
-      username: joe_user
-      password: somepass
-      pool_ids: xxxx
+      username: {{ username }}
+      password: {{ password }}
+      pool_ids: {{ pool_ids }}
       register: result
     - name: Print message
       debug:

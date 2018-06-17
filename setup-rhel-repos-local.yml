@@ -1,0 +1,28 @@
+---
+- hosts: all
+  tasks:
+    - name: Disable all repositories
+      command: "/usr/bin/subscription-manager repos --disable=*"
+
+    - name: Add local mirror repositories
+      yum_repository:
+        name: local_mirror
+        file: local_mirror
+        baseurl: http://bastion.pichuang.local/
+        description: Local mirror for RHEL 7
+        gpgcheck: no
+
+    - name: Upgrade all packages
+      yum:
+        name: '*'
+        state: latest
+
+    - name: Check yum repolist
+      command: "yum repolist enabled"
+      args:
+        warn: no
+      register: result
+
+    - name: Print result
+      debug:
+        msg: "{{ result }}"

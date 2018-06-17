@@ -1,0 +1,12 @@
+---
+- hosts: "{{ variable_host }}"
+  tasks:
+    - name: Type Command
+      command: "{{ command }}"
+      register: result
+
+    - name: Print stdout result
+      debug: msg="{{ result.stdout_lines }}"
+
+    - name: Print stderr result
+      debug: msg="{{ result.stderr_lines }}"

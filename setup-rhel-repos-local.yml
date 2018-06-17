@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: "{{ variable_host | default('all') }}"
   tasks:
     - name: Disable all repositories
       command: "/usr/bin/subscription-manager repos --disable=*"

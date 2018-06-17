@@ -4,12 +4,36 @@
     - name: Disable all repositories
       command: "/usr/bin/subscription-manager repos --disable=*"
 
-    - name: Add local mirror repositories
+    - name: Add rhel-7-server-rpms mirror repositories
       yum_repository:
-        name: local_mirror
+        name: mirror-rhel-7-server-rpms
         file: local_mirror
-        baseurl: http://bastion.pichuang.local/
-        description: Local mirror for RHEL 7
+        baseurl: http://bastion.pichuang.local/rhel-7-server-rpms
+        description: Local rhel-7-server-rpms
+        gpgcheck: no
+
+    - name: Add rhel-7-server-optional-rpms mirror repositories
+      yum_repository:
+        name: mirror-rhel-7-server-optional-rpms
+        file: local_mirror
+        baseurl: http://bastion.pichuang.local/rhel-7-server-optional-rpms
+        description: Local rhel-7-server-optional-rpms
+        gpgcheck: no
+
+    - name: Add rhel-7-server-extras-rpms mirror repositories
+      yum_repository:
+        name: mirror-rhel-7-server-extras-rpms
+        file: local_mirror
+        baseurl: http://bastion.pichuang.local/rhel-7-server-extras-rpms
+        description: Local rhel-7-server-extras-rpms
+        gpgcheck: no
+
+    - name: Add rhel-7-server-ose-3.9-rpms mirror repositories
+      yum_repository:
+        name: mirror-rhel-7-server-ose-3.9-rpms
+        file: local_mirror
+        baseurl: http://bastion.pichuang.local/rhel-7-server-ose-3.9-rpms
+        description: Local rhel-7-server-ose-3.9-rpms
         gpgcheck: no
 
     - name: Upgrade all packages

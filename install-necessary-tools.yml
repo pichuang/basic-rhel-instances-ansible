@@ -1,0 +1,15 @@
+---
+- hosts: "{{ variable_host | default('all') }}"
+  tasks:
+    - name: Install necessary packages
+      yum: name={{ item }} state=latest
+      with_itmes:
+        - vim
+        - git
+
+    - name: Clone momorc dotfiles project
+      git:
+        repo: 'http://github.com/pichuang/momorc'
+        dest: /root/.momorc
+        update: yes
+

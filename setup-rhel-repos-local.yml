@@ -3,6 +3,7 @@
   tasks:
     - name: Disable all repositories
       command: "/usr/bin/subscription-manager repos --disable=*"
+      ignore_errors: yes
 
     - name: Add rhel-7-server-rpms mirror repositories
       yum_repository:

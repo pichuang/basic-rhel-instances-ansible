@@ -3,7 +3,7 @@
   tasks:
     - name: Install necessary packages
       yum: name={{ item }} state=latest
-      with_itmes:
+      with_items:
         - vim
         - git
 

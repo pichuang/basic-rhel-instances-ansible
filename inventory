@@ -1,1 +1,2 @@
-master1 ansible_connection=ssh ansible_ssh=master1.pichuang.local
+#master1 ansible_connection=ssh ansible_ssh=master1.pichuang.local
+localhost ansible_connection=ssh ansible_host=localhost

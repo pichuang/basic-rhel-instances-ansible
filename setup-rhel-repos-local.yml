@@ -29,12 +29,12 @@
         description: Local rhel-7-server-extras-rpms
         gpgcheck: no
 
-    - name: Add rhel-7-server-ose-3.9-rpms mirror repositories
+    - name: Add rhel-7-server-ose-3.11-rpms mirror repositories
       yum_repository:
-        name: mirror-rhel-7-server-ose-3.9-rpms
+        name: mirror-rhel-7-server-ose-3.11-rpms
         file: local_mirror
-        baseurl: http://bastion.pichuang.local/rhel-7-server-ose-3.9-rpms
-        description: Local rhel-7-server-ose-3.9-rpms
+        baseurl: http://bastion.pichuang.local/rhel-7-server-ose-3.11-rpms
+        description: Local rhel-7-server-ose-3.11-rpms
         gpgcheck: no
 
     - name: Add rhel-7-fast-datapath-rpms mirror repositories
@@ -44,15 +44,6 @@
         baseurl: http://bastion.pichuang.local/rhel-7-fast-datapath-rpms
         description: Local rhel-7-fast-datapath-rpms
         gpgcheck: no
-
-    - name: Add rhel-7-server-3scale-amp-2.2-rpms mirror repositories
-      yum_repository:
-        name: mirror-rhel-7-server-3scale-amp-2.2-rpms
-        file: local_mirror
-        baseurl: http://bastion.pichuang.local/rhel-7-server-3scale-amp-2.2-rpms
-        description: Local rhel-7-server-3scale-amp-2.2-rpms
-        gpgcheck: no
-
 
     - name: Upgrade all packages
       yum:

@@ -45,6 +45,14 @@
         description: Local rhel-7-fast-datapath-rpms
         gpgcheck: no
 
+    - name: Add rhel-server-rhscl-7-rpms mirror repositories
+      yum_repository:
+        name: mirror-rhel-server-rhscl-7-rpms
+        file: local_mirror
+        baseurl: http://bastion.pichuang.local/rhel-server-rhscl-7-rpms
+        description: Local rhel-server-rhscl-7-rpms
+        gpgcheck: no
+
     - name: Upgrade all packages
       yum:
         name: '*'

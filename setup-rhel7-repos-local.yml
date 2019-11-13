@@ -61,6 +61,14 @@
         description: Local rhel-ha-for-rhel-7-server-rpms
         gpgcheck: no
 
+    - name: Add jb-eap-7.2-for-rhel-7-server-rpms mirror repositories
+      yum_repository:
+        name: mirror-jb-eap-7.2-for-rhel-7-server-rpms
+        file: local_mirror
+        baseurl: http://bastion.pichuang.local/jb-eap-7.2-for-rhel-7-server-rpms
+        description: Local jb-eap-7.2-for-rhel-7-server-rpms
+        gpgcheck: no
+
     - name: Upgrade all packages
       yum:
         name: '*'

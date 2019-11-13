@@ -1,0 +1,45 @@
+---
+- hosts: "{{ variable_host | default('all') }}"
+  tasks:
+    - name: Disable all repositories
+      command: "/usr/bin/subscription-manager repos --disable=*"
+      ignore_errors: yes
+
+    - name: Add rhel-8-for-x86_64-appstream-rpms mirror repositories
+      yum_repository:
+        name: mirror-rhel-8-for-x86_64-appstream-rpms
+        file: local_mirror
+        baseurl: http://bastion.pichuang.local/rhel-8-for-x86_64-appstream-rpms
+        description: Local rhel-8-for-x86_64-appstream-rpms
+        gpgcheck: no
+
+    - name: Add rhel-8-for-x86_64-baseos-rpms mirror repositories
+      yum_repository:
+        name: mirror-rhel-8-for-x86_64-baseos-rpms
+        file: local_mirror
+        baseurl: http://bastion.pichuang.local/rhel-8-for-x86_64-baseos-rpms
+        description: Local rhel-8-for-x86_64-baseos-rpms
+        gpgcheck: no
+
+    - name: Add ansible-2.9-for-rhel-8-x86_64-rpms mirror repositories
+      yum_repository:
+        name: mirror-ansible-2.9-for-rhel-8-x86_64-rpms
+        file: local_mirror
+        baseurl: http://bastion.pichuang.local/ansible-2.9-for-rhel-8-x86_64-rpms
+        description: Local ansible-2.9-for-rhel-8-x86_64-rpms
+        gpgcheck: no
+
+    - name: Upgrade all packages
+      yum:
+        name: '*'
+        state: latest
+
+    - name: Check yum repolist
+      command: "yum repolist enabled"
+      args:
+        warn: no
+      register: result
+
+    - name: Print result
+      debug:
+        msg: "{{ result }}"

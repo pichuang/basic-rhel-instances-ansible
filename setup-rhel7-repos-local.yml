@@ -69,6 +69,14 @@
         description: Local jb-eap-7.2-for-rhel-7-server-rpms
         gpgcheck: no
 
+    - name: Add rh-sso-7.3-for-rhel-7-server-rpms mirror repositories
+      yum_repository:
+        name: mirror-rh-sso-7.3-for-rhel-7-server-rpms
+        file: local_mirror
+        baseurl: http://bastion.pichuang.local/rh-sso-7.3-for-rhel-7-server-rpms
+        description: Local rh-sso-7.3-for-rhel-7-server-rpms
+        gpgcheck: no
+
     - name: Upgrade all packages
       yum:
         name: '*'

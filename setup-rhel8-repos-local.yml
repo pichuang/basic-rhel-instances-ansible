@@ -5,6 +5,12 @@
       command: "/usr/bin/subscription-manager repos --disable=*"
       ignore_errors: yes
 
+    - name: Setting enabled=0 in subscription-manager.conf
+      lineinfile:
+        path: /etc/yum/pluginconf.d/subscription-manager.conf
+        regexp: '^enabled'
+        line: 'enabled=0'
+
     - name: Add rhel-8-for-x86_64-appstream-rpms mirror repositories
       yum_repository:
         name: mirror-rhel-8-for-x86_64-appstream-rpms
@@ -28,6 +34,15 @@
         baseurl: http://bastion.pichuang.local/ansible-2.9-for-rhel-8-x86_64-rpms
         description: Local ansible-2.9-for-rhel-8-x86_64-rpms
         gpgcheck: no
+
+    - name: Add EPEL repository
+      yum_repository:
+        name: epel
+        state: present
+        description: EPEL YUM repo
+        baseurl: "https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64/"
+        gpgcheck: no
+        enabled: no
 
     - name: Upgrade all packages
       yum:

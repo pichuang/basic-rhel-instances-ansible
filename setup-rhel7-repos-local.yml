@@ -1,9 +1,17 @@
 ---
-- hosts: "{{ variable_host | default('all') }}"
+- hosts: all
+  gather_facts: no
+  connection: local
   tasks:
     - name: Disable all repositories
       command: "/usr/bin/subscription-manager repos --disable=*"
       ignore_errors: yes
+
+    - name: Setting enabled=0 in subscription-manager.conf
+      lineinfile:
+        path: /etc/yum/pluginconf.d/subscription-manager.conf
+        regexp: '^enabled'
+        line: 'enabled=0'
 
     - name: Add rhel-7-server-rpms mirror repositories
       yum_repository:

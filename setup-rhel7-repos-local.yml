@@ -77,6 +77,15 @@
         description: Local rh-sso-7.3-for-rhel-7-server-rpms
         gpgcheck: no
 
+    - name: Add EPEL repository
+      yum_repository:
+        name: epel
+        state: present
+        description: EPEL YUM repo
+        baseurl: "https://dl.fedoraproject.org/pub/epel/7/x86_64/"
+        gpgcheck: no
+        enabled: no
+
     - name: Upgrade all packages
       yum:
         name: '*'
